@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections ?>
+
+
+<VBox id="mainContainer" fx:id="mainContainer" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.hu.v2pafr.controller.MainMenuController">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="201.0" layoutY="14.0" prefHeight="65.0" prefWidth="198.0" text="Translator">
+               <font>
+                  <Font size="44.0" />
+               </font>
+            </Label>
+            <Button fx:id="grammarButton" layoutX="14.0" layoutY="389.0" mnemonicParsing="false" onAction="#onClickGrammar" prefHeight="82.0" prefWidth="167.0" text="Add Grammar" />
+            <Button fx:id="exportButton" layoutX="201.0" layoutY="389.0" mnemonicParsing="false" onAction="#onClickExport" prefHeight="82.0" prefWidth="167.0" text="Export File" />
+            <TextField fx:id="tfinput" layoutX="74.0" layoutY="186.0" prefHeight="82.0" prefWidth="178.0" />
+            <Button fx:id="translateButton" layoutX="465.0" layoutY="303.0" mnemonicParsing="false" onAction="#onClickTranslate" prefHeight="48.0" prefWidth="82.0" text="Translate" />
+            <TextField fx:id="tfOutput" editable="false" layoutX="369.0" layoutY="186.0" prefHeight="82.0" prefWidth="178.0" />
+            <Label alignment="CENTER_RIGHT" layoutX="330.0" layoutY="186.0" prefHeight="82.0" prefWidth="39.0" text="To: " />
+            <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="186.0" prefHeight="82.0" prefWidth="39.0" text="From: " />
+            <ComboBox fx:id="cbLanguage" layoutX="369.0" layoutY="104.0" prefHeight="25.0" prefWidth="178.0" promptText="Choose Language" />
+            <ComboBox fx:id="cbInputType" layoutX="74.0" layoutY="104.0" prefHeight="25.0" prefWidth="178.0" promptText="Choose Input type" />
+            
+         </children>
+      </Pane>
+   </children>
+</VBox>

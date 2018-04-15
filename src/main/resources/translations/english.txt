@@ -1,0 +1,11 @@
+de:the
+het:the
+een:a
+brood:bread
+man:man
+boer:burp
+laat:lets
+eet:eats
+koopt:buys
+snijdt:cuts
+kip:chicken
