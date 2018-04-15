@@ -16,12 +16,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import nl.hu.v2pafr.model.SentenceStorage;
 import nl.hu.v2pafr.service.ExporterService;
 
 public class ExporterController implements Initializable{
 
     @FXML private Button exportButton;
-    @FXML private Button cancelButton;
     @FXML private ComboBox<String> cbExportType;
     @FXML private VBox exporterContainer;
     
@@ -39,21 +39,22 @@ public class ExporterController implements Initializable{
     	}
     	
     	File file = this.askForFileLocation(new FileChooser.ExtensionFilter(cbExportType.getSelectionModel().getSelectedItem(), "*"));
-    }
-
-    @FXML
-    void onClickCancel(ActionEvent event) {
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-		alert.setTitle("Warning");
-		alert.setContentText("Are you sure you want to exit this application?");
-		
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.CANCEL) {
-			event.consume();
-		}
-		else if (result.get() == ButtonType.OK) {
-			this.
-		}
+    	
+    	if (file != null) {
+    		Alert alert = null;
+    		
+    		if(ExporterService.getExporterForType(cbExportType.getSelectionModel().getSelectedItem()).saveExport(file)) {
+    			alert = new Alert(Alert.AlertType.INFORMATION);
+    			alert.setTitle("File Exported!");
+    		} else {
+    			alert = new Alert(Alert.AlertType.ERROR);
+    			alert.setTitle("Exporting file failed!");
+    			alert.setContentText("Something went wrong with exporting the file.\nPerhaps you haven't translated a sentence yet!");
+    		}
+    		
+    		alert.showAndWait();
+    	}
+    	
     }
     
     private File askForFileLocation(FileChooser.ExtensionFilter... elements) {

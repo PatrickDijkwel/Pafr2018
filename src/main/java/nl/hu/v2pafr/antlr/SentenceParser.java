@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 public class SentenceParser {
 	//This method returns true or false if the sentence was correct or not according to the syntax
-	public static boolean parseSentence(String zin) {
+	public boolean parseSentence(String zin) {
 		ANTLRInputStream input = new ANTLRInputStream(zin.toLowerCase());
 		
 		VertalerLexer lexer = new VertalerLexer(input);
@@ -17,6 +17,7 @@ public class SentenceParser {
 		
 		//Here the syntax of an "eenvoudigezin" is being checked
 		parser.eenvoudigezin();
+		
 		//If there are syntaxerrors the method: .getNumberOfSyntaxErrors will return the amount of errors
 		if(parser.getNumberOfSyntaxErrors() == 0) {
 			System.out.println("Deze zin klopt");

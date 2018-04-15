@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -60,19 +61,30 @@ public class MainMenuController implements Initializable{
     		return;
     	}
     	
-    	try {
-    		String translation = TranslatorService.getTranslatorForLanguage(cbLanguage.getSelectionModel().getSelectedItem()).translate(this.tfinput.getText());
-    		tfOutput.setText(translation);
-    	} catch(Exception e) {
-    		e.printStackTrace();
-    		return;
+    	SentenceParser parser = new SentenceParser();
+    	
+    	if(parser.parseSentence(tfinput.getText())) {
+	    	try {
+	    		String translation = TranslatorService.getTranslatorForLanguage(cbLanguage.getSelectionModel().getSelectedItem()).translate(this.tfinput.getText());
+	    		tfOutput.setText(translation);
+	    		
+	    		//Set the translated sentence in the storage
+	    		SentenceStorage.getInstance().setSentence(tfOutput.getText());
+	    		
+	    		//Load the representation of the sentence
+	    		loadFXMLFile("representationScene.fxml");
+	    	} catch(Exception e) {
+	    		e.printStackTrace();
+	    		return;
+	    	}
+    	} else {
+    		Alert alert = new Alert(Alert.AlertType.ERROR);
+    		alert.setTitle("Error");
+    		alert.setContentText("The syntax of this sentence is not correct!");
+    		alert.showAndWait();
     	}
 
-    	SentenceParser.parseSentence(tfinput.getText());
     	
-    	SentenceStorage.getInstance().setSentence(tfOutput.getText());
-    	
-    	loadFXMLFile("representationScene.fxml");
     }
     
     private void loadFXMLFile(String fileName) {
