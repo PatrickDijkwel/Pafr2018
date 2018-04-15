@@ -26,6 +26,7 @@ public class MainWindow extends Application{
 		stage.setResizable(false);
 		stage.setTitle("Vertaler");
 		stage.setScene(new Scene(root));
+		
 		stage.sizeToScene();
 		stage.show();
 		

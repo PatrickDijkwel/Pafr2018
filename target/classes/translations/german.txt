@@ -1,0 +1,10 @@
+de:das
+het:es
+een:ein
+brood:Brot
+man:Mann
+boer:Rulpser
+laat:lasst
+eet:isst
+koopt:kauft
+snijdt:schneidet
